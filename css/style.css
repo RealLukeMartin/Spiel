@@ -6,6 +6,7 @@ html, body {
 }
 #game {
 	background: #e5ddcb;
+	width: 100% !important;
 }
 #ent1 {
 	border-radius: 50%;
