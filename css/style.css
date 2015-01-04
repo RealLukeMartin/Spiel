@@ -12,12 +12,15 @@ html, body {
 	width: 100%;
 	z-index: 2;
 	height: 1000px;
+	background: rgba(115,176,188,0.05);
+	transition: all 0.3s ease-in;
+	-webkit-transition: all 0.3s ease-in;
 }
 .overlay.outGame {
-	background: rgba(0,0,0,0.75);
+	background: rgba(115,176,188,0.75);
 }
 #play-button {
-	margin: 0 auto;
+	margin: 10% auto;
 	display: inherit;
 	cursor: pointer;
 }
