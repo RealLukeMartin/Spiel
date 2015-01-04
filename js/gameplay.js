@@ -3,7 +3,13 @@
 var man,
     KEYCODE_ESC = 27,
 	paused = 0,
-    scrollInterval = sideScrollInterval();
+    scrollInterval = sideScrollInterval(),
+    level_1 = [[0, 250, 250],
+	           [360, 200, 170],
+	           [590, 270, 200],
+	           [900, 300, 250],
+	           [1200, 260, 170],
+	           [1500, 250, 250]];
 
 //Initialize the game area
 Crafty.init(500,350, document.getElementById('game'));
@@ -21,12 +27,13 @@ function moveRight(distance) {
 	Crafty.viewport.x = Crafty.viewport.x - distance;
 }
 
-function start(startPos) {
+function start(startPos, map) {
 	//Start Position distance behind the first Floor
 	Crafty.viewport.x = startPos;
 	$('.overlay').removeClass('outGame');
 	$('#play-button').css('display', 'none');
-	//Add user entity
+
+	//Create user entity
 	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
 	    .color('#327462')
@@ -34,26 +41,21 @@ function start(startPos) {
 	    .gravity('Floor')
 	    .gravityConst(0.1);
 
-	//Add Floor(barrier) entity
-	
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 0, y: 250, w: 250, h: 10})
-	    .color('#524656');
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 330, y: 250, w: 170, h: 10})
-	    .color('#524656');
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 530, y: 250, w: 250, h: 10})
-	    .color('#524656');
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 800, y: 250, w: 250, h: 10})
-	    .color('#524656');
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 1100, y: 250, w: 170, h: 10})
-	    .color('#524656');
-	Crafty.e('Floor, 2D, DOM, Color')
-	    .attr({x: 1300, y: 250, w: 250, h: 10})
-	    .color('#524656');
+	//Create Floor entities
+	function setFloors(level) {
+		for (i = 0; i < level.length; i++) {
+			
+			dx = level[i][0];
+			dy = level[i][1];
+			dw = level[i][2];
+			
+			Crafty.e('Floor, 2D, DOM, Color')
+	    		.attr({x: dx, y: dy, w: dw, h: 10})
+	    		.color('#524656');
+		}
+	} 
+	setFloors(map);
+
 	//Pause the game
 	function pause() {
 	    Crafty.viewport.x = Crafty.viewport.x;
@@ -93,7 +95,7 @@ function start(startPos) {
 }
 
 $('#play-button').on('click', function() {
-    start(100);
+    start(100, level_1);
 });
 
 })();
