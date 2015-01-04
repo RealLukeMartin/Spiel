@@ -44,6 +44,7 @@ function pauseToggle() {
 function start(startPos) {
 	//Start Position distance behind the first Floor
 	Crafty.viewport.x = startPos;
+	$('.overlay').removeClass('outGame');
 	//Add user entity
 	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
@@ -78,6 +79,7 @@ function start(startPos) {
 	    clearInterval(scrollInterval);
 	    man.disableControl();
 	    paused = 1;
+	    $('.overlay').addClass('outGame');
 	    Crafty.pause();
 	}
 	//Unpause the game
@@ -85,6 +87,7 @@ function start(startPos) {
 		scrollInterval = sideScrollInterval();
 		man.enableControl();
 		paused = 0;
+		$('.overlay').removeClass('outGame');
 		Crafty.pause();
 	}
 	//Toggle for pause/play
