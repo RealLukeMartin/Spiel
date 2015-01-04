@@ -1,3 +1,5 @@
+(function(){
+
 var man,
     KEYCODE_ESC = 27,
 	paused = 0,
@@ -115,3 +117,5 @@ function start(startPos) {
 $('#play-button').on('click', function() {
     start(100);
 });
+
+})();
