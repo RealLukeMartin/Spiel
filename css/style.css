@@ -4,6 +4,16 @@ html, body {
 	margin: 0;
 	padding: 0;
 }
+.overlay {
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+}
+#play-button {
+	margin: 0 auto;
+	display: inherit;
+	cursor: pointer;
+}
 #game {
 	background: #e5ddcb;
 	width: 100% !important;
