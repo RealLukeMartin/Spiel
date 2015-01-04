@@ -3,6 +3,8 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	background: url('../images/pondblur.jpg');
+	background-size: cover;
 }
 .overlay {
 	position: absolute;
@@ -15,7 +17,6 @@ html, body {
 	cursor: pointer;
 }
 #game {
-	background: #e5ddcb;
 	width: 100% !important;
 }
 #ent1 {
