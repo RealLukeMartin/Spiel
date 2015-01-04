@@ -10,7 +10,7 @@ html, body {
 .overlay {
 	position: absolute;
 	width: 100%;
-	z-index: 2;
+	z-index: 20;
 	height: 1000px;
 	background: rgba(115,176,188,0.05);
 	transition: all 0.3s ease-in;
@@ -19,10 +19,17 @@ html, body {
 .overlay.outGame {
 	background: rgba(115,176,188,0.75);
 }
-#play-button {
+#play-button, #pause-button {
 	margin: 10% auto;
 	display: inherit;
 	cursor: pointer;
+	z-index: 10;
+	position: absolute;
+	left: 33.3333%;
+	width: 33.3333%;
+}
+#pause-button {
+	display: none;
 }
 #game {
 	width: 100% !important;
