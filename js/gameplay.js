@@ -9,8 +9,8 @@ Crafty.init(500,350, document.getElementById('game'));
 //set side Scroll Speed
 function sideScrollInterval() {
 	scroll = window.setInterval(function() {
-	    moveRight(10) }, 
-	    100
+	    moveRight(5) }, 
+	    50
     );
     return scroll;
 }
