@@ -20,28 +20,6 @@ function sideScrollInterval() {
 function moveRight(distance) {
 	Crafty.viewport.x = Crafty.viewport.x - distance;
 }
-//Pause the game
-function pause() {
-    Crafty.viewport.x = Crafty.viewport.x;
-    clearInterval(scrollInterval);
-    man.disableControl();
-    paused = 1;
-}
-//Unpause the game
-function play() {
-	scrollInterval = sideScrollInterval();
-	man.enableControl();
-	paused = 0;
-}
-//Toggle for pause/play
-function pauseToggle() {
-    if (paused == 0) {
-        pause()
-    } else {
-	    play();
-    }
-}
-
 
 function start(startPos) {
 	//Start Position distance behind the first Floor
@@ -52,7 +30,7 @@ function start(startPos) {
 	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
 	    .color('#327462')
-	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrow keys
+	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrows keys
 	    .gravity('Floor')
 	    .gravityConst(0.1);
 
