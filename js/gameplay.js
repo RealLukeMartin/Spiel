@@ -45,6 +45,7 @@ function start(startPos) {
 	//Start Position distance behind the first Floor
 	Crafty.viewport.x = startPos;
 	$('.overlay').removeClass('outGame');
+	$('#play-button').css('display', 'none');
 	//Add user entity
 	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
@@ -80,6 +81,7 @@ function start(startPos) {
 	    man.disableControl();
 	    paused = 1;
 	    $('.overlay').addClass('outGame');
+	    $('#pause-button').css('display','block');
 	    Crafty.pause();
 	}
 	//Unpause the game
@@ -88,6 +90,7 @@ function start(startPos) {
 		man.enableControl();
 		paused = 0;
 		$('.overlay').removeClass('outGame');
+		$('#pause-button').css('display', 'none');
 		Crafty.pause();
 	}
 	//Toggle for pause/play
@@ -104,11 +107,11 @@ function start(startPos) {
 	       pauseToggle();
 	   }
 	});
+	$('#pause-button').on('click', function() {
+        pauseToggle();
+	});
 }
 
 $('#play-button').on('click', function() {
     start(100);
-    
-    $(this).css('display','none');
-    console.log(Crafty.viewport.x);
 });
