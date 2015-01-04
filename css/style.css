@@ -5,11 +5,16 @@ html, body {
 	padding: 0;
 	background: url('../images/pondblur.jpg');
 	background-size: cover;
+	overflow: hidden;
 }
 .overlay {
 	position: absolute;
 	width: 100%;
 	z-index: 2;
+	height: 1000px;
+}
+.overlay.outGame {
+	background: rgba(0,0,0,0.75);
 }
 #play-button {
 	margin: 0 auto;
@@ -18,10 +23,13 @@ html, body {
 }
 #game {
 	width: 100% !important;
+	height: 1000px !important;
 }
 #ent1 {
 	border-radius: 50%;
+	box-shadow: 0.5px 0.5px 1px #777;
 }
 .Floor {
 	border-radius: 5px;
+	border: 1px solid #b4b4b4;
 }
