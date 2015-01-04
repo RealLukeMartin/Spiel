@@ -47,10 +47,10 @@ function start(startPos) {
 	//Add user entity
 	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
-	    .color('#A7C5BD')
+	    .color('#327462')
 	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrow keys
 	    .gravity('Floor')
-	    .gravityConst(0.2);
+	    .gravityConst(0.1);
 
 	//Add Floor(barrier) entity
 	
@@ -72,7 +72,29 @@ function start(startPos) {
 	Crafty.e('Floor, 2D, DOM, Color')
 	    .attr({x: 1300, y: 250, w: 250, h: 10})
 	    .color('#524656');
-    
+	//Pause the game
+	function pause() {
+	    Crafty.viewport.x = Crafty.viewport.x;
+	    clearInterval(scrollInterval);
+	    man.disableControl();
+	    paused = 1;
+	    Crafty.pause();
+	}
+	//Unpause the game
+	function play() {
+		scrollInterval = sideScrollInterval();
+		man.enableControl();
+		paused = 0;
+		Crafty.pause();
+	}
+	//Toggle for pause/play
+	function pauseToggle() {
+	    if (paused == 0) {
+	        pause()
+	    } else {
+		    play();
+	    }
+	}  
 	$(document).on('keyup', function(e) {
 		console.log(e.keyCode);
 	    if (e.keyCode == KEYCODE_ESC) {
