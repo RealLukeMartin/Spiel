@@ -22,3 +22,6 @@ html, body {
 #ent1 {
 	border-radius: 50%;
 }
+.Floor {
+	border-radius: 5px;
+}
