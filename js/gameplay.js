@@ -77,16 +77,31 @@ function start(startPos, map) {
 	} 
 
 	//Create user entity
-	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
+	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity, Collision')
 	    .attr({x: 0, y: 0, w: 50, h: 50})
 	    .color('#327462')
 	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrows keys
 	    .gravity('Floor')
-	    .gravityConst(0.1);
+	    .gravityConst(0.1)
+	    .collision()
+	    .onHit('Win', function(e) {
+		  clearInterval(scrollInterval);
+		  this.disableControl();
+		  alert('You Win!');
+	});
 
 	//Create Floor entities
 	lastFloorX = setFloors(map);
     console.log('last floor x: ' + lastFloorX);
+
+    //Create Win Entity
+	Crafty.e('Win, 2D, DOM, Color, Collision')
+	.attr({x: lastFloorX + 130, y: 150, w: 10, h: 100})
+	.color('#777')
+	.collision()
+    .onHit('Man', function(e) {
+	  this.destroy();
+	});
 
 	$(document).on('keyup', function(e) {
 		console.log(e.keyCode);
