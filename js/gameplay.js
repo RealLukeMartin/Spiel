@@ -32,31 +32,7 @@ function start(startPos, map) {
 	Crafty.viewport.x = startPos;
 	$('.overlay').removeClass('outGame');
 	$('#play-button').css('display', 'none');
-
-	//Create user entity
-	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
-	    .attr({x: 0, y: 0, w: 50, h: 50})
-	    .color('#327462')
-	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrows keys
-	    .gravity('Floor')
-	    .gravityConst(0.1);
-
-	//Create Floor entities
-	function setFloors(level) {
-		for (i = 0; i < level.length; i++) {
-			
-			dx = level[i][0];
-			dy = level[i][1];
-			dw = level[i][2];
-			
-			Crafty.e('Floor, 2D, DOM, Color')
-	    		.attr({x: dx, y: dy, w: dw, h: 10})
-	    		.color('#524656');
-		}
-	} 
-	setFloors(map);
-
-	//Pause the game
+    //Pause the game
 	function pause() {
 	    Crafty.viewport.x = Crafty.viewport.x;
 	    clearInterval(scrollInterval);
@@ -83,6 +59,35 @@ function start(startPos, map) {
 		    play();
 	    }
 	}  
+	//Create Floor entities
+	function setFloors(level) {
+		var lastFloorX = level[level.length - 1][0]; 
+
+		for (i = 0; i < level.length; i++) {
+			
+			dx = level[i][0];
+			dy = level[i][1];
+			dw = level[i][2];
+			
+			Crafty.e('Floor, 2D, DOM, Color')
+	    		.attr({x: dx, y: dy, w: dw, h: 10})
+	    		.color('#524656');
+		}
+		return lastFloorX;
+	} 
+
+	//Create user entity
+	man = Crafty.e('Man, 2D, DOM, Color, Multiway, Gravity')
+	    .attr({x: 0, y: 0, w: 50, h: 50})
+	    .color('#327462')
+	    .multiway(4, {UP_ARROW: -90, DOWN_ARROW: 0, RIGHT_ARROW: 0, LEFT_ARROW: -180}) //<-- control entity with arrows keys
+	    .gravity('Floor')
+	    .gravityConst(0.1);
+
+	//Create Floor entities
+	lastFloorX = setFloors(map);
+    console.log('last floor x: ' + lastFloorX);
+
 	$(document).on('keyup', function(e) {
 		console.log(e.keyCode);
 	    if (e.keyCode == KEYCODE_ESC) {
