@@ -87,7 +87,9 @@ function start(startPos, map) {
 	    .onHit('Win', function(e) {
 		  clearInterval(scrollInterval);
 		  this.disableControl();
-		  alert('You Win!');
+		  
+		  //Restart Game
+		  location.reload();
 	});
 
 	//Create Floor entities
